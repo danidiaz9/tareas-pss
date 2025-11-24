@@ -1,0 +1,68 @@
+(b)
+
+1. Acceso a la dirección 20f8:
+   - Buscamos la etiqueta 20f.
+   - Hay una coincidencia en la línea 0f, por lo que es un acierto en el caché.
+
+2. Acceso a la dirección 48b4:
+   - Buscamos la etiqueta 48b.
+   - No hay coincidencias en ninguna línea, por lo que es un desacierto en el caché.
+   - Se cambia en la línea 8b la etiqueta 48b.
+
+3. Acceso a la dirección 90f0:
+   - Buscamos la etiqueta 90f.
+   - No hay coincidencias en ninguna línea, por lo que es un desacierto en el caché.
+   - Se cambia en la línea 0f la etiqueta 90f.
+
+4. Acceso a la dirección 20f0:
+   - Buscamos la etiqueta 20f.
+   - No hay coincidencias en ninguna línea, por lo que es un desacierto en el caché.
+   - Se cambia en la línea 0f la etiqueta 20f.
+
+5. Acceso a la dirección 6c90:
+   - Buscamos la etiqueta 6c9.
+   - Hay una coincidencia en la línea c9, por lo que es un acierto en el caché.
+
+6. Acceso a la dirección 90f8:
+   - Buscamos la etiqueta 90f.
+   - No hay coincidencias en ninguna línea, por lo que es un desacierto en el caché.
+   - Se cambia en la línea 0f la etiqueta 90f.
+
+7. Acceso a la dirección 30f0:
+   - Buscamos la etiqueta 30f.
+   - No hay coincidencias en ninguna línea, por lo que es un desacierto en el caché.
+   - Se cambia en la línea 0f la etiqueta 30f.
+
+El estado final del caché será:
+
+línea c9: etiqueta 6c9.
+línea 0f: etiqueta 30f.
+línea 8b: etiqueta 48b.
+
+(c)
+
+(i) Arquitectura Pipeline:
+       Ciclo | Fetch | Decode | Execute
+          1  |   A   |        |
+          2  |   B   |   A    |
+          3  |   C   |   B    |    A
+          4  |   D   |   C    |    B
+          5  |   E   |   D    |    C
+          6  |   F   |   E    |    D
+          7  |   G   |   F    |    E
+          8  |   M   |        |     
+          9  |   N   |   M    |     
+         10  |       |   N    |    M
+         11  |       |        |    N
+         
+(ii) Arquitectura Superescalar (2 pipelines):
+       Ciclo |  Fetch  |  Decode  |  Execute 
+          1  |   AB    |          |
+          2  |   CD    |    AB    |
+          3  |   EF    |    CD    |    AB    
+          4  |         |    D     |    C     
+          5  |   GH    |    EF    |    D     
+          6  |         |    F     |    E     
+          7  |   MN    |          |          
+          8  |         |    MN    |          
+          9  |         |          |    MN     
